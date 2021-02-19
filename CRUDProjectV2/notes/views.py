@@ -8,7 +8,7 @@ from .serializers import *
 
 @api_view(['GET', 'POST'])
 def notes_list(request):
-    """
+    """6
  List  notes, or create a new note.
  """
     if request.method == 'GET':

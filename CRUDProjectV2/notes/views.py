@@ -46,16 +46,16 @@ def notes_detail(request, pk):
  Retrieve, update or delete a note by id/pk.
  """
     try:
-        note = Note.objects.get(pk=pk)
-    except Note.DoesNotExist:
+        note = Notes.objects.get(pk=pk)
+    except Notes.DoesNotExist:   
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = NoteSerializer(note,context={'request': request})
+        serializer = NotesSerializer(note,context={'request': request})
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = NoteSerializer(note, data=request.data,context={'request': request})
+        serializer = NotesSerializer(note, data=request.data,context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
